@@ -1,7 +1,6 @@
-/* style.css - initial commit */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-image: linear-gradient(to right, rgb(0, 179, 255), rgb(0, 255, 17));
     display: flex;
     justify-content: center;
     align-items: center;
@@ -45,5 +44,6 @@ button:hover {
 .result-item {
     display: flex;
     justify-content: space-between;
+    text-align: center;
     margin-bottom: 5px;
 }

@@ -1,31 +1,43 @@
-// script.js - initial commit
 function calculateDates() {
     const inputDate = new Date(document.getElementById('inputDate').value);
-    
+    const today = new Date();
+    const warrantyStatusElement = document.getElementById('warrantyStatus');
+
+    // Calculate the difference in years
+    const yearsDifference = today.getFullYear() - inputDate.getFullYear();
+
     // Check if the date is valid
     if (isNaN(inputDate)) {
         document.getElementById('results').innerText = "Please enter a valid date.";
         return;
     }
 
-    // Calculate future dates
-    const oneYear = new Date(inputDate);
-    oneYear.setFullYear(inputDate.getFullYear() + 1);
+    // Calculate future dates (commented out for now)
+    // const oneYear = new Date(inputDate);
+    // oneYear.setFullYear(inputDate.getFullYear() + 1);
+    // ... (similar for three, five, and twenty-five years)
 
-    const threeYears = new Date(inputDate);
-    threeYears.setFullYear(inputDate.getFullYear() + 3);
+    // Calculate warranty status
+    const totalDifference = yearsDifference * 12 + (today.getMonth() - inputDate.getMonth()); // Total months difference
+    let warrantyStatus;
 
-    const fiveYears = new Date(inputDate);
-    fiveYears.setFullYear(inputDate.getFullYear() + 5);
+    if (totalDifference < 36) {
+        warrantyStatus = "In-Warranty All";
+    } else if (totalDifference >= 36 && totalDifference < 60) {
+        warrantyStatus = "In-Warranty Parts";
+    } else {
+        warrantyStatus = "Out of Warranty";
+    }
 
-    const twentyFiveYears = new Date(inputDate);
-    twentyFiveYears.setFullYear(inputDate.getFullYear() + 25);
-
-    // Construct the output HTML with proper alignment
+    // Display the warranty status
     document.getElementById('results').innerHTML = `
-        <div class="result-item"><strong>1 Year:</strong> ${oneYear.toDateString()}</div>
-        <div class="result-item"><strong>3 Years:</strong> ${threeYears.toDateString()}</div>
-        <div class="result-item"><strong>5 Years:</strong> ${fiveYears.toDateString()}</div>
-        <div class="result-item"><strong>25 Years:</strong> ${twentyFiveYears.toDateString()}</div>
+        <div class="results-item"><strong>${warrantyStatus}</div>
     `;
+
+    const element = document.getElementById("results");
+    element.style.display = "flex";
+    element.style.justifyContent = "center";
+    element.style.alignItems = "center";
+    element.style.backgroundColor = "yellow";
 }
+
