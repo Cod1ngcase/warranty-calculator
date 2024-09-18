@@ -33,7 +33,6 @@ function calculateDates() {
     } else {
         warrantyStatus = "Out of Warranty " + "Expired on " + fifthYear;
     }
-    console.log(warrantyStatus)
     // Display the warranty status
     document.getElementById('results').innerHTML = `
         <div class="results-item"><strong>${warrantyStatus}</div>
@@ -44,5 +43,6 @@ function calculateDates() {
     element.style.justifyContent = "center";
     element.style.alignItems = "center";
     element.style.backgroundColor = "yellow";
+
 }
 
