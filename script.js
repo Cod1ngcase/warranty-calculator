@@ -9,8 +9,6 @@ function calculateDates() {
     const thirdYear = new Date(new Date(inputDate).setFullYear(new Date(inputDate).getFullYear() + 3)).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '.');
     const fifthYear = new Date(new Date(inputDate).setFullYear(new Date(inputDate).getFullYear() + 5)).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '.');
     
-    // let fifthYear = inputDate.setDate(inputDate.getDate() + 60);
-
     // Check if the date is valid
     if (isNaN(inputDate)) {
         document.getElementById('results').innerText = "Please enter a valid date.";
@@ -23,7 +21,6 @@ function calculateDates() {
     // ... (similar for three, five, and twenty-five years)
 
     // Calculate warranty status
-    // const totalDifference = yearsDifference * 12 + (today.getMonth() - inputDate.getMonth()); // Total months difference
     let warrantyStatus;
 
     if (yearsDifference <= 3) {
@@ -40,6 +37,7 @@ function calculateDates() {
         <div class="results-item"><strong>${warrantyStatus}</div>
     `;
 
+    //Foramt Results Text
     const element = document.getElementById("results");
     element.style.display = "flex";
     element.style.justifyContent = "center";
