@@ -23,16 +23,18 @@ function calculateDates() {
     // ... (similar for three, five, and twenty-five years)
 
     // Calculate warranty status
-    const totalDifference = yearsDifference * 12 + (today.getMonth() - inputDate.getMonth()); // Total months difference
+    // const totalDifference = yearsDifference * 12 + (today.getMonth() - inputDate.getMonth()); // Total months difference
     let warrantyStatus;
 
-    if (totalDifference < 36) {
-        warrantyStatus = "In-Warranty All " + "Expires " + thirdYear; 
-    } else if (totalDifference >= 36 && totalDifference < 60) {
-        warrantyStatus = "In-Warranty Parts " + "Expires " + fifthYear;
+    if (yearsDifference <= 3) {
+        warrantyStatus = "In-Warranty All " + "<br>Parts only as of " + thirdYear; 
+    } else if (yearsDifference > 3 && yearsDifference < 5) {
+        warrantyStatus = "In-Warranty Parts " + "<br>Expires on" + fifthYear;
     } else {
-        warrantyStatus = "Out of Warranty " + "Expired on " + fifthYear;
+        warrantyStatus = "Out of Warranty " + "<br>Expired on " + fifthYear;
     }
+    warrantyStatus.replace("\n", "<br>")
+    console.log(warrantyStatus)
     // Display the warranty status
     document.getElementById('results').innerHTML = `
         <div class="results-item"><strong>${warrantyStatus}</div>
@@ -41,8 +43,9 @@ function calculateDates() {
     const element = document.getElementById("results");
     element.style.display = "flex";
     element.style.justifyContent = "center";
-    element.style.alignItems = "center";
+    element.style.textAlign = "center";
     element.style.backgroundColor = "yellow";
+    
 
 }
 
